@@ -43,6 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patterns\Adapter.cs" />
+    <Compile Include="Patterns\Composite.cs" />
+    <Compile Include="Patterns\Decorator.cs" />
+    <Compile Include="Patterns\Facade.cs" />
+    <Compile Include="Patterns\FactoryMethod.cs" />
+    <Compile Include="Patterns\Iterator.cs" />
+    <Compile Include="Patterns\Proxy.cs" />
+    <Compile Include="Patterns\Singleton.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
