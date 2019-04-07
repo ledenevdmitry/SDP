@@ -116,6 +116,7 @@ namespace SDP.Iterator
         }
     }
 
+    //Word count должен реализовывать этот интерфейс, чтобы поддерживать foreach
     abstract class IteratorAggregate : IEnumerable
     {
         public abstract IEnumerator GetEnumerator();
