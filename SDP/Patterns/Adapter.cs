@@ -4,41 +4,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Адаптер обеспечивает отличающийся интерфейс к объекту, предоставляя к нему доступ, подходящий клиенту
 namespace SDP.Adapter
 {
-    // Целевой класс объявляет интерфейс, с которым может работать клиентский
-    // код.
+    //клиент, использующий старый интерфейс
+    class Client
+    {
+        ITarget target;
+
+        public Client(ITarget target)
+        {
+            this.target = target;
+        }
+
+        public void PrintRequest()
+        {
+            Console.WriteLine(target.GetRequest());
+        }
+    }
+
+    //интерфейс, с которым раньше работал клиент
     public interface ITarget
     {
         string GetRequest();
     }
 
-    // Адаптируемый класс содержит некоторое полезное поведение, но его
-    // интерфейс несовместим  с существующим клиентским кодом. Адаптируемый
-    // класс нуждается в некоторой доработке,  прежде чем клиентский код сможет
-    // его использовать.
+    //появляется другой класс, у которого другие методы, которые требуется адаптировать под клиента
     class Adaptee
     {
         public string GetSpecificRequest()
         {
-            return "Specific request.";
+            return "Определенный запрос.";
         }
     }
 
-    // Адаптер делает интерфейс Адаптируемого класса совместимым с целевым
-    // интерфейсом.
+    // Адаптер делает интерфейс адаптируемого класса совместимым с клиентом
     class Adapter : ITarget
     {
         private readonly Adaptee _adaptee;
 
+        //адаптер агрегирует адаптируемый класс..
         public Adapter(Adaptee adaptee)
         {
             this._adaptee = adaptee;
         }
 
+        //..и на его основе реализует интерфейс ITarget
         public string GetRequest()
         {
-            return $"This is '{this._adaptee.GetSpecificRequest()}'";
+            return $"Это '{this._adaptee.GetSpecificRequest()}'";
         }
     }
 }

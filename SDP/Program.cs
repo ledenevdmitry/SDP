@@ -11,28 +11,34 @@ namespace SDP
 
             //Singleton
 
-            // Клиентский код.
             Singleton.Singleton s1 = Singleton.Singleton.GetInstance();
             Singleton.Singleton s2 = Singleton.Singleton.GetInstance();
 
+            //при проверке на равенство проверятся ссылки, они должны быть одинаковые,
+            //тк старый объект переиспользуется 
             if (s1 == s2)
             {
-                Console.WriteLine("Singleton works, both variables contain the same instance.");
+                Console.WriteLine("Синглтон сработал, обе переменные содержат один и тот же объект.");
             }
             else
             {
-                Console.WriteLine("Singleton failed, variables contain different instances.");
+                Console.WriteLine("Синглтон не сработал, переменные содержат разные объекты.");
             }
 
             //Adapter
 
             Adapter.Adaptee adaptee = new Adapter.Adaptee();
-            Adapter.ITarget target = new Adapter.Adapter(adaptee);
+            Adapter.ITarget adapter = new Adapter.Adapter(adaptee);
 
-            Console.WriteLine("Adaptee interface is incompatible with the client.");
-            Console.WriteLine("But with adapter client can call it's method.");
+            Console.WriteLine("Интерфейс адаптируемого класса несовместим с клиентам.");
+            Console.WriteLine("Но с адаптером все в порядке.");
 
-            Console.WriteLine(target.GetRequest());
+            //не получится использовать adaptee напрямую, необходимо использовать адаптер
+            //Adapter.Client adapterClient = new Adapter.Client(adaptee); - !!!ошибка
+
+            //вызов через адаптер проходит корректно
+            Adapter.Client adapterClient = new Adapter.Client(adapter);
+            adapterClient.PrintRequest();
 
             //Facade
 
@@ -45,17 +51,18 @@ namespace SDP
             Facade.Facade facade = new Facade.Facade(subsystem1, subsystem2);
             Facade.Client.ClientCode(facade);
 
-            //Proxy
+            //Proxy: 
+            //Client может работать как с базовым классом, так и с прокси
 
             Proxy.Client proxyClient = new Proxy.Client();
 
-            Console.WriteLine("Client: Executing the client code with a real subject:");
+            Console.WriteLine("Client: выполнение клиентского кода с RealSubject:");
             Proxy.RealSubject realSubject = new Proxy.RealSubject();
             proxyClient.ClientCode(realSubject);
 
             Console.WriteLine();
 
-            Console.WriteLine("Client: Executing the same client code with a proxy:");
+            Console.WriteLine("Client: выполнение того же клиентского кода с proxy:");
             Proxy.Proxy proxy = new Proxy.Proxy(realSubject);
             proxyClient.ClientCode(proxy);
 
@@ -66,7 +73,7 @@ namespace SDP
             // Таким образом, клиентский код может поддерживать простые
             // компоненты-листья...
             Composite.Leaf leaf = new Composite.Leaf();
-            Console.WriteLine("Client: I get a simple component:");
+            Console.WriteLine("Client: получил простой лист:");
             compositeClient.ClientCode(leaf);
 
             // ...а также сложные контейнеры.
@@ -78,10 +85,10 @@ namespace SDP
             branch2.Add(new Composite.Leaf());
             tree.Add(branch1);
             tree.Add(branch2);
-            Console.WriteLine("Client: Now I've got a composite tree:");
+            Console.WriteLine("Client: получил дерево:");
             compositeClient.ClientCode(tree);
 
-            Console.Write("Client: I don't need to check the components classes even when managing the tree:\n");
+            Console.Write("Client: не важно, дерево у нас или лист:\n");
             compositeClient.ClientCode2(tree, leaf);
 
             //Iterator
@@ -127,6 +134,8 @@ namespace SDP
             Decorator.ConcreteDecoratorB decorator2 = new Decorator.ConcreteDecoratorB(decorator1);
             Console.WriteLine("Client: Now I've got a decorated component:");
             decoratorClient.ClientCode(decorator2);
+
+            Console.ReadKey();
         }
     }
 }
