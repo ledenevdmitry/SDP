@@ -17,7 +17,7 @@ namespace SDP.FactoryMethod
     {
         public string Operation()
         {
-            return "{Result of ConcreteProduct1}";
+            return "{Результат КонкретногоПродукта1}";
         }
     }
 
@@ -26,7 +26,7 @@ namespace SDP.FactoryMethod
     {
         public string Operation()
         {
-            return "{Result of ConcreteProduct2}";
+            return "{Результат КонкретногоПродукта2}";
         }
     }
 
@@ -40,7 +40,7 @@ namespace SDP.FactoryMethod
             // Вызываем фабричный метод, чтобы получить объект-продукт.
             var product = FactoryMethod();
             // Далее, работаем с этим продуктом.
-            var result = "Creator: The same creator's code has just worked with "
+            var result = "Creator: Тот же создатель сейчас работал с продуктом "
                 + product.Operation();
 
             return result;

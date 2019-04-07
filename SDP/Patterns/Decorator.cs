@@ -61,7 +61,7 @@ namespace SDP.Decorator
         //использует метод базового декоратора, который в свою очередь использует метод декорируемого объекта
         public override string Operation()
         {
-            return $"ConcreteDecoratorA({base.Operation()})";
+            return $"КонкретныйДекораторА({base.Operation()})";
         }
     }
 
@@ -76,7 +76,7 @@ namespace SDP.Decorator
 
         public override string Operation()
         {
-            return $"ConcreteDecoratorB({base.Operation()})";
+            return $"КонкретныйДекораторБ({base.Operation()})";
         }
     }
 
