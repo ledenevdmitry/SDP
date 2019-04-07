@@ -38,7 +38,7 @@ namespace SDP.Composite
     {
         public override string Operation()
         {
-            return "Leaf";
+            return "Лист";
         }
 
         public override bool IsComposite()
@@ -68,7 +68,7 @@ namespace SDP.Composite
         public override string Operation()
         {
             int i = 0;
-            string result = "Branch(";
+            string result = "Ветка(";
 
             foreach (Component component in this._children)
             {

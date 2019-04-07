@@ -101,14 +101,14 @@ namespace SDP
             collection.AddItem("Second");
             collection.AddItem("Third");
 
-            Console.WriteLine("Straight traversal:");
+            Console.WriteLine("Обход сначала в конец:");
 
             foreach (var element in collection)
             {
                 Console.WriteLine(element);
             }
 
-            Console.WriteLine("\nReverse traversal:");
+            Console.WriteLine("\nОбход с конца в начало:");
 
             collection.ReverseDirection();
 
@@ -122,17 +122,17 @@ namespace SDP
             Decorator.Client decoratorClient = new Decorator.Client();
 
             var simple = new Decorator.ConcreteComponent();
-            Console.WriteLine("Client: I get a simple component:");
+            Console.WriteLine("Client: я использую простой компонент:");
             decoratorClient.ClientCode(simple);
             Console.WriteLine();
 
             // ...так и декорированные.
             //
-            // Обратите внимание, что декораторы могут обёртывать не только
+            // Декораторы могут обёртывать не только
             // простые компоненты, но и другие декораторы.
             Decorator.ConcreteDecoratorA decorator1 = new Decorator.ConcreteDecoratorA(simple);
             Decorator.ConcreteDecoratorB decorator2 = new Decorator.ConcreteDecoratorB(decorator1);
-            Console.WriteLine("Client: Now I've got a decorated component:");
+            Console.WriteLine("Client: я использую декорированный компонент:");
             decoratorClient.ClientCode(decorator2);
 
             Console.ReadKey();

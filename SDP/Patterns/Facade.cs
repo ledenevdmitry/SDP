@@ -28,10 +28,10 @@ namespace SDP.Facade
         // подсистемы.
         public string Operation()
         {
-            string result = "Facade initializes subsystems:\n";
+            string result = "Фасад инициализирует подсистемы:\n";
             result += this._subsystem1.operation1();
             result += this._subsystem2.operation1();
-            result += "Facade orders subsystems to perform the action:\n";
+            result += "Фасад упорядочивает подсистемы, управляя вызовами:\n";
             result += this._subsystem1.operationN();
             result += this._subsystem2.operationZ();
             return result;
@@ -45,12 +45,12 @@ namespace SDP.Facade
     {
         public string operation1()
         {
-            return "Subsystem1: Ready!\n";
+            return "Подсистема1: Готово!\n";
         }
 
         public string operationN()
         {
-            return "Subsystem1: Go!\n";
+            return "Подсистема1: Поехали!\n";
         }
     }
 
@@ -59,12 +59,12 @@ namespace SDP.Facade
     {
         public string operation1()
         {
-            return "Subsystem2: Get ready!\n";
+            return "Подсистема2: Приготовиться!\n";
         }
 
         public string operationZ()
         {
-            return "Subsystem2: Fire!\n";
+            return "Подсистема2: Огонь!\n";
         }
     }
 
